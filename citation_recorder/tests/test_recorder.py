@@ -1,6 +1,10 @@
+#!/bin/python
+
 import unittest
 
-from recorder import Recorder
+from recorder.recorder import Recorder
+
+print("WTFFFFF")
 
 class TestRecorder(unittest.TestCase):
     def test_default_dict(self):
@@ -9,7 +13,7 @@ class TestRecorder(unittest.TestCase):
         """
         print("fffffff-------")
         target_keys = ["recorder_schema_version", "record_path"]
-        result = Recorder.new.default_dict
+        result = Recorder.default_dict()
         print(result)
         print(result.keys())
         self.assertEqual(result.keys(), target_keys)
