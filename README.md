@@ -1,4 +1,4 @@
-# Convus references
+# Convus References
 
 References from [convus.org](https://www.convus.org), which includes:
 
@@ -15,4 +15,4 @@ The content of this repository - and other Convus content - is licensed under a 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a>
 
-Any code in this repository is licensed under the [AGPL](CODE_LICENSE)
+Any code in this repository is licensed under the [AGPL](LICENSE_CODE)
