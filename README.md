@@ -2,12 +2,12 @@
 
 References from [convus.org](https://www.convus.org), which includes:
 
-- Topics, in [topics.csv](topics.csv)
+- Topics, in [topics/](topics)
 - Citations, in [citations/](citations)
 
 ### This repository is the source of truth
 
-The data in this repository is the data used by Convus.org, to update Convus.org, you can update this repository.
+The data in this repository is the data used by Convus.org - updates here will update the webapp.
 
 ---
 
