@@ -2,15 +2,18 @@
 name = "citation-recorder"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Seth Herr"]
 readme = "README.md"
 packages = [{include = "citation_recorder"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+yq = "^3.2.1"
+pyyaml = "^6.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.3.0"
+pytest-watch = "^4.2.0"
 
 [build-system]
 requires = ["poetry-core"]
