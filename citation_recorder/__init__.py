@@ -10,8 +10,11 @@ class CitationRecorder:
         "updated_at",
         "word_count",
         "doi",
-        "publisher",
-        "cannonical_url"
+        "publisher", # og:site_name
+        "cannonical_url", # og:url
+        "word_count",
+        "og:image",
+        # It probably makes more sense to have a list of metadata attributes, rather than this random list
     ]
     main_attributes = {
         "recorder_schema_version": "1",
