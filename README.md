@@ -4,7 +4,7 @@ References from [convus.org](https://www.convus.org), which includes:
 
 - Topics (in a CSV), in [topics/](topics)
 - Citation Records (1 yaml file per url), in [citations/](citations)
-- `CitationRecorder`, a python project that fetches URLs and generates Citation Records
+- `CitationRecorder`, a python project to scrape URLs and generate the citation records, in [citation_recorder/](citation_recorder)
 
 ### This repository is the source of truth
 

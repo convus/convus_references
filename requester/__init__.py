@@ -2,11 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 class Requester(object):
-    def __init__(self, url, record_path=None, convus_id=None, convus_attributes=None):
+    def __init__(self, url):
         self.url = url
-        self.record_path = record_path
-        self.convus_id = convus_id
-        self.convus_attributes = convus_attributes
         self.soup = None
 
     def get_url(self):
@@ -40,12 +37,8 @@ class Requester(object):
             attrs[key] = meta.attrs['content']
         return attrs
 
+    # This will be more sophisticated in the future. Right now, it's just the meta attributes
     def citation_attrs(self):
         source_attributes = self.meta_attrs(self.fetch_soup())
-        attrs = {'reference_schema_version': '0.1',
-                 'record_path': self.record_path,
-                 'url': self.url,
-                 'convus_id': self.convus_id,
-                 'convus_attributes': self.convus_attributes,
-                 'source_attributes': source_attributes}
-        return attrs
+        return source_attributes
+    
