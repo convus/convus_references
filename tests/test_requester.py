@@ -1,9 +1,5 @@
-# Following along this:
-# https://stackoverflow.com/questions/6456304/scrapy-unit-testing
-
 import betamax
 import requests
-# from betamax.fixtures.unittest import BetamaxTestCase
 
 with betamax.Betamax.configure() as config:
     config.cassette_library_dir = 'tests/cassettes'
@@ -12,7 +8,7 @@ with betamax.Betamax.configure() as config:
 session = requests.Session()
 recorder = betamax.Betamax(session)
 
-from requester import Requester
+from citation_recorder import Requester
 
 def test_meta_attributes(betamax_recorder):
     with recorder.use_cassette("mendo_voice"):
@@ -31,4 +27,3 @@ def test_citation_attributes(betamax_recorder):
         citation_attrs = requester.citation_attrs()
         target_attribute_keys = ['description', 'og:locale', 'og:type', 'og:title', 'og:description', 'og:url', 'og:site_name', 'article:publisher', 'article:published_time', 'article:modified_time', 'og:image', 'og:image:width', 'og:image:height', 'og:image:type', 'author', 'twitter:card', 'twitter:creator', 'twitter:site', 'generator', 'news_keywords', 'original-source', 'syndication-source', 'standout', 'msapplication-TileImage', 'logo', 'datePublished', 'dateModified', 'image']
         assert list(citation_attrs.keys()) == target_attribute_keys
-

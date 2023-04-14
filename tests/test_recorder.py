@@ -1,51 +1,41 @@
-from citation_recorder import CitationRecorder  
+from citation_recorder import Requester, Recorder
 
-def test_default_dictionary():
-    default_dict = {
-        "recorder_schema_version": "1",
-        "record_path": "",
-        "convus_id": "",
-        "url": "",
+def test_default_dictionary(monkeypatch):
+    def mock_citation_attrs(self):
+        return {'example_meta_key': 'foo bar'}
+    
+    monkeypatch.setattr(Requester, 'citation_attrs', mock_citation_attrs)
+
+    target_result = {
+        "reference_schema_version": "0.1",
+        "record_path": "a",
+        "convus_id": "b",
+        "url": "http://example.com",
         "convus_attributes": {},
-        "source_attributes": {
-            "pay_access": "",
-            "title": "",
-            "authors": "",
-            "description": "",
-            "published_at": "",
-            "updated_at": "",
-            "word_count": "",
-            "doi": "",
-            "publisher": "",
-            "cannonical_url": "",
-            "word_count": "",
-            "og:image": "",
-        }
+        "source_attributes": {'example_meta_key': 'foo bar'}
     }
-    target_keys = ["recorder_schema_version", "record_path"]
-    assert CitationRecorder.default_dict() == default_dict
+    result = Recorder("http://example.com", "a", "b", {}).record_attributes()
+    # print(result)
+    assert result == target_result
 
-# def test_dictionary_to_yaml():
-#     target = """
-# convus_attributes: {}
-# convus_id: ''
-# record_path: ''
-# recorder_schema_version: '1'
-# source_attributes:
-#     authors: ''
-#     cannonical_url: ''
-#     description: ''
-#     doi: ''
-#     og:image: ''
-#     pay_access: ''
-#     published_at: ''
-#     publisher: ''
-#     title: ''
-#     updated_at: ''
-#     word_count: ''
-# url: ''
-#     """
-#     result = CitationRecorder.dictionary_to_yaml(CitationRecorder.default_dict())
-#     print(result)
-#     print(target)
-#     assert result == target
+
+def test_dictionary_to_yaml(monkeypatch):
+    def mock_citation_attrs(self):
+        return {'example_meta_key': 'foo bar'}
+    
+    monkeypatch.setattr(Requester, 'citation_attrs', mock_citation_attrs)
+
+    target_result = ["convus_attributes: {}",
+        "convus_id: b",
+        "record_path: a",
+        "reference_schema_version: '0.1'",
+        "source_attributes:",
+        "  example_meta_key: foo bar",
+        "url: https://www.convus.org\n",
+    ]
+
+
+    result = Recorder("https://www.convus.org", "a", "b", {}).record_attributes_yaml()
+    # print(result)
+    assert result == "\n".join(target_result)
+
