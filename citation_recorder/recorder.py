@@ -15,8 +15,8 @@ class Recorder(object):
     def record_attributes(self):
         return {
             'reference_schema_version': '0.1',
-            'record_path': self.record_path,
             'url': self.url,
+            'record_path': self.record_path,
             'convus_id': self.convus_id,
             'convus_attributes': self.convus_attributes,
             'source_attributes': self.source_attributes(),
@@ -24,8 +24,13 @@ class Recorder(object):
 
     def record_attributes_yaml(self):
         # convert dictionary to yaml
-        return yaml.dump(self.record_attributes(), sort_keys=True)
+        return yaml.dump(self.record_attributes(), sort_keys=False)
     
+    def write_yaml(self):
+        filename = "citations/" + self.record_path + ".yaml"
+        with open(filename, 'w') as f:
+            f.write(self.record_attributes_yaml())
+
 # attributes = [
 #     "pay_access",
 #     "title",
